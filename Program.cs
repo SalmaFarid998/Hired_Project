@@ -1,4 +1,6 @@
 
+using HiredProject.DbContexts;
+
 namespace HiredProject
 {
     public class Program
@@ -14,6 +16,8 @@ namespace HiredProject
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            builder.Services.AddDbContext<HiredDbContext>();
+            
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
