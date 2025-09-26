@@ -13,7 +13,10 @@ namespace HiredProject.DbContexts
         {
         }
 
-        DbSet<Company> Companies { get; set; }
-        DbSet<Review> Reviews { get; set; }
+        public DbSet<Company> Companies { get; set; }
+        public DbSet<Review> Reviews { get; set; }
+
+        public DbSet<JobPost> JobPosts { get; set; }
+        public DbSet<WorkingPeriod> EmploymentHistories { get; set; }
     }
 }

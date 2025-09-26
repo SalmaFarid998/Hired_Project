@@ -1,5 +1,7 @@
 
 using HiredProject.DbContexts;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace HiredProject
 {
@@ -16,8 +18,8 @@ namespace HiredProject
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            builder.Services.AddDbContext<HiredDbContext>();
-            
+            builder.Services.AddDbContext<HiredDbContext>(options=>options.UseSqlServer(builder.Configuration.GetConnectionString("MainDbConnectionString")));
+            //builder.Services.AddIdentityCore<IdentityUser>().AddRoles<IdentityRole>().AddTokenProvider<DataProtectorTokenProvider<IdentityUser>>("HiredApp").AddEntityFrameworkStores<HiredDbContext>.AddDefaultTokenProviders();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
