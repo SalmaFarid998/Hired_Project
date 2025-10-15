@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using HiredProject.DbContexts;
 using HiredProject.Domains;
+using HiredProject.Domains.DTO;
 
 namespace HiredProject.Controllers
 {
@@ -76,8 +77,21 @@ namespace HiredProject.Controllers
         // POST: api/JobPosts
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<JobPost>> PostJobPost(JobPost jobPost)
+        public async Task<ActionResult<JobPost>> PostJobPost(CreateJobPostDTO jobPostDTO)
         {
+            JobPost jobPost = new()
+            {
+                CompanyId = jobPostDTO.CompanyId,
+                Id = new Guid(),
+                Created = DateTime.Now,
+                Description = jobPostDTO.Description,
+                JobTitle = jobPostDTO.JobTitle,
+                JobType = jobPostDTO.JobType,
+                Requirements = jobPostDTO.Requirements,
+                Salary = jobPostDTO.Salary,
+                Updated = DateTime.Now,
+            };
+            
             _context.JobPosts.Add(jobPost);
             await _context.SaveChangesAsync();
 
